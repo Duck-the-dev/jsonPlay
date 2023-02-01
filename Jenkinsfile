@@ -56,7 +56,7 @@ pipeline {
                 // (NOTE 1: DOCKER_CREDENTIALS will be set to "your_username:your_password".)
                 // The new variables will always be YOUR_VARIABLE_NAME + _USR and _PSW.
                 // (NOTE 2: You can't print credentials in the pipeline for security reasons.)
-                DOCKER_CREDENTIALS = credentials('my-docker-credentials-id')
+                DOCKER_CREDENTIALS = credentials('dockerhub')
             }
 
             steps {
@@ -75,7 +75,7 @@ pipeline {
 
                         stage('Push image') {
                             // Use the Credential ID of the Docker Hub Credentials we added to Jenkins.
-                            docker.withRegistry('https://registry.hub.docker.com', 'my-docker-credentials-id') {
+                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                                 // Push image and tag it with our build number for versioning purposes.
                                 app.push("${env.BUILD_NUMBER}")
 
