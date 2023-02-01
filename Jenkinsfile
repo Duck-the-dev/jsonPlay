@@ -3,13 +3,12 @@
 
 pipeline {
     // Lets Jenkins use Docker for us later.
-    agent any
+    agent { docker { image 'golang' } }
 
     // If anything fails, the whole Pipeline stops.
     stages {
         stage('Build & Test') {
             // Use golang.
-            agent { docker { image 'go:1.19.5-alpine3.16' } }
 
             steps {
                 // Create our project directory.
@@ -29,7 +28,6 @@ pipeline {
 
         stage('Test') {
             // Use golang.
-            agent { docker { image 'go:1.19.5-alpine3.16' } }
 
             steps {
                 // Create our project directory.
@@ -51,7 +49,6 @@ pipeline {
         }
 
         stage('Docker') {
-            agent { docker { image 'go:1.19.5-alpine3.16' } }
             environment {
                 // Extract the username and password of our credentials into "DOCKER_CREDENTIALS_USR" and "DOCKER_CREDENTIALS_PSW".
                 // (NOTE 1: DOCKER_CREDENTIALS will be set to "your_username:your_password".)
@@ -71,7 +68,7 @@ pipeline {
                         }
 
                         stage('Build image') {
-                            app = docker.build("${env.DOCKER_CREDENTIALS_USR}/my-project-img")
+                            app = docker.build("${env.DOCKER_CREDENTIALS_USR}/jsonplay")
                         }
 
                         stage('Push image') {
