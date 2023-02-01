@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Build & Test') {
             // Use golang.
-            agent { docker { image 'golang' } }
+            agent { docker { image 'go:1.19.5-alpine3.16' } }
 
             steps {
                 // Create our project directory.
@@ -95,4 +95,4 @@ pipeline {
             deleteDir()
         }
     }
-}   
+}
