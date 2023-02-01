@@ -6,7 +6,7 @@ func main() {
 	var chose string
 
 	for {
-		fmt.Println("Choose one of the end points : ")
+		fmt.Println("Choose one of the end point's : ")
 		fmt.Println("1. /get")
 		fmt.Println("2. /getData")
 		fmt.Println("3. /post")
@@ -29,7 +29,7 @@ func main() {
 			PostFormReq()
 			continue
 		case "q", "Q":
-			panic("Thank you and see you soon")
+			panic("Thank you and see you soon, Bye")
 
 		default:
 			fmt.Println("Invalid choice, Try again")
