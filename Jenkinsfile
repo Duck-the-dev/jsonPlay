@@ -3,7 +3,7 @@
 
 pipeline {
     // Lets Jenkins use Docker for us later.
-    agent { docker { image 'golang' } }
+    agent any
 
     // If anything fails, the whole Pipeline stops.
     stages {
