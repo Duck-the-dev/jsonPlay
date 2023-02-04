@@ -4,11 +4,18 @@
 pipeline {
     // Lets Jenkins use Docker for us later.
     agent any
+    tools {
+        go 'go1.19'
+    }
+    environment {
+        GO119MODULE = 'on'
+        CGO_ENABLED = 0
+        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
+    }
     // If anything fails, the whole Pipeline stops.
     stages {
         stage('Build & Test') {
             // Use golang.
-            agent { docker { image 'golang' } }
 
             steps {
                 // Build the app.
@@ -18,7 +25,6 @@ pipeline {
 
         stage('Test') {
             // Use golang.
-            agent { docker { image 'golang' } }
 
             steps {
                 // Remove cached test results.
