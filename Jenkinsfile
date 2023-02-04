@@ -3,12 +3,12 @@
 
 pipeline {
     // Lets Jenkins use Docker for us later.
-    agent any
 
     // If anything fails, the whole Pipeline stops.
     stages {
         stage('Build & Test') {
             // Use golang.
+            agent { docker { image 'golang' } }
 
             steps {
                 // Create our project directory.
@@ -28,6 +28,7 @@ pipeline {
 
         stage('Test') {
             // Use golang.
+            agent { docker { image 'golang' } }
 
             steps {
                 // Create our project directory.
@@ -68,7 +69,7 @@ pipeline {
                         }
 
                         stage('Build image') {
-                            app = docker.build("${env.DOCKER_CREDENTIALS_USR}/jsonplay")
+                            app = docker.build("${env.DOCKER_CREDENTIALS_USR}/my-project-img")
                         }
 
                         stage('Push image') {
@@ -93,4 +94,4 @@ pipeline {
             deleteDir()
         }
     }
-}
+}   
