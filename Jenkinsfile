@@ -3,7 +3,7 @@
 
 pipeline {
     // Lets Jenkins use Docker for us later.
-    agent any  
+
     // If anything fails, the whole Pipeline stops.
     stages {
         stage('Build & Test') {
@@ -94,4 +94,4 @@ pipeline {
             deleteDir()
         }
     }
-}
+}   
