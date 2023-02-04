@@ -12,7 +12,7 @@ pipeline {
 
             steps {
                 // Build the app.
-                sh 'go build'
+                sh 'sudo go build'
             }
         }
 
