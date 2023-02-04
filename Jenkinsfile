@@ -51,7 +51,6 @@ pipeline {
     post {
         always {
             // Clean up our workspace.
-            sh 'docker logout'
             deleteDir()
         }
     }
